@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-mono: "Share Tech Mono", monospace;
+  
+  --color-neon-cyan: #00f0ff;
+  --color-neon-purple: #bf00ff;
+  --color-neon-pink: #ff00aa;
+  --color-neon-blue: #0088ff;
+  --color-dark-bg: #05050a;
+  --color-dark-card: #0c0c14;
+  --color-dark-border: #1a1a2e;
+  --color-glow-cyan: rgba(0, 240, 255, 0.4);
+  --color-glow-purple: rgba(191, 0, 255, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-dark-bg);
+  color: #e0e0ff;
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+}
+
+/* Neon glow utilities */
+.neon-text-cyan {
+  color: var(--color-neon-cyan);
+  text-shadow: 0 0 5px var(--color-neon-cyan), 0 0 10px var(--color-glow-cyan), 0 0 20px var(--color-glow-cyan);
+}
+
+.neon-text-purple {
+  color: var(--color-neon-purple);
+  text-shadow: 0 0 5px var(--color-neon-purple), 0 0 10px var(--color-glow-purple), 0 0 20px var(--color-glow-purple);
+}
+
+.neon-border {
+  border: 1px solid var(--color-neon-cyan);
+  box-shadow: 0 0 5px var(--color-glow-cyan), inset 0 0 5px rgba(0, 240, 255, 0.1);
+}
+
+.neon-border-purple {
+  border: 1px solid var(--color-neon-purple);
+  box-shadow: 0 0 5px var(--color-glow-purple), inset 0 0 5px rgba(191, 0, 255, 0.1);
+}
+
+.neon-btn {
+  background: transparent;
+  border: 1px solid var(--color-neon-cyan);
+  color: var(--color-neon-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  font-family: var(--font-orbitron);
+}
+
+.neon-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 15px var(--color-glow-cyan);
+  text-shadow: 0 0 8px var(--color-neon-cyan);
+}
+
+.neon-btn-purple {
+  background: transparent;
+  border: 1px solid var(--color-neon-purple);
+  color: var(--color-neon-purple);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  font-family: var(--font-orbitron);
+}
+
+.neon-btn-purple:hover {
+  background: rgba(191, 0, 255, 0.15);
+  box-shadow: 0 0 15px var(--color-glow-purple);
+  text-shadow: 0 0 8px var(--color-neon-purple);
+}
+
+.neon-btn-danger {
+  background: transparent;
+  border: 1px solid #ff0044;
+  color: #ff0044;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  font-family: var(--font-orbitron);
+}
+
+.neon-btn-danger:hover {
+  background: rgba(255, 0, 68, 0.15);
+  box-shadow: 0 0 15px rgba(255, 0, 68, 0.4);
+}
+
+.card {
+  background: var(--color-dark-card);
+  border: 1px solid var(--color-dark-border);
+  border-radius: 4px;
+}
+
+.card-glow {
+  background: linear-gradient(145deg, #0c0c14 0%, #0a0a12 100%);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a12;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-neon-cyan);
+  border-radius: 3px;
+}
+
+/* Alarm overlay pulse */
+@keyframes pulse-alarm {
+  0%, 100% { opacity: 0.7; box-shadow: 0 0 20px #ff0044; }
+  50% { opacity: 1; box-shadow: 0 0 40px #ff0044, 0 0 60px #ff0044; }
+}
+
+.alarm-pulse {
+  animation: pulse-alarm 1s ease-in-out infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 240, 255, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+input, select, textarea {
+  background: #08080f !important;
+  border: 1px solid rgba(0, 240, 255, 0.3) !important;
+  color: #e0e0ff !important;
+  font-family: var(--font-mono) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--color-neon-cyan) !important;
+  box-shadow: 0 0 10px var(--color-glow-cyan) !important;
+}
+
+/* Make urgent tasks scream */
+.urgent-task {
+  border-left: 3px solid #ff0044;
+  background: linear-gradient(90deg, rgba(255, 0, 68, 0.12) 0%, transparent 100%);
+}
